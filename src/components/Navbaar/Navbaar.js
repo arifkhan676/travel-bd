@@ -12,6 +12,8 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
+import { NavLink } from 'react-router-dom';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 const pages = ['Home', 'Destinations', 'Stories'];
 const settings = ['Profile', 'Account', 'Logout'];
@@ -55,7 +57,7 @@ function Navbaar() {
                             textDecoration: 'none',
                         }}
                     >
-                        LOGO
+                        <NavLink to='/' > Travel BD </NavLink>
                     </Typography>
 
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -125,12 +127,22 @@ function Navbaar() {
                         ))}
                     </Box>
 
+                    <Typography>
+                        <NavLink to='/login' style={{ color: 'white', marginRight: '30px', textDecoration: 'none' }} > Login </NavLink>
+                    </Typography>
+
+                    <ShoppingCartIcon style={{ marginRight: '30px' }} />
+
+
                     <Box sx={{ flexGrow: 0 }}>
+
                         <Tooltip title="Open settings">
+
                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
                             </IconButton>
                         </Tooltip>
+
                         <Menu
                             sx={{ mt: '45px' }}
                             id="menu-appbar"

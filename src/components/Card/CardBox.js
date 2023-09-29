@@ -30,16 +30,23 @@ const ExpandMore = styled((props) => {
 
 export default function CardBox(props) {
 
-  const [expanded, setExpanded] = React.useState('');
 
-  console.log(expanded);
+  // console.log(props.item.id);
+
+  const { id, title, subheader, btnName, image, typography } = props.item;
 
   const navigate = useNavigate();
 
-  const handleExpandClick = () => {
-    setExpanded('visit koro');
-    navigate('/VisitPage')
+  const handleExpandClick = (id) => {
+
+    navigate(`/VisitPage/${id}`)
+
   };
+
+  const handleExpand = (id) => {
+    navigate(`/ProductPage/${id}`)
+
+  }
 
   return (
     <Card sx={{ maxWidth: 345, marginLeft: '100px' }}>
@@ -54,20 +61,18 @@ export default function CardBox(props) {
             <MoreVertIcon />
           </IconButton>
         }
-        title="Shrimp and Chorizo Paella"
-        subheader="September 14, 2016"
+        title={title}
+        subheader={subheader}
       />
       <CardMedia
         component="img"
         height="194"
-        image={props.image}
+        image={image}
         alt="Paella dish"
       />
       <CardContent>
         <Typography variant="body2" color="text.secondary">
-          This impressive paella is a perfect party dish and a fun meal to cook
-          together with your guests. Add 1 cup of frozen peas along with the mussels,
-          if you like.
+          {typography}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
@@ -78,12 +83,9 @@ export default function CardBox(props) {
           <ShareIcon />
         </IconButton>
         <ExpandMore
-          expand={expanded}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
           aria-label="show more"
         >
-          <Button variant="outlined">Visit</Button>
+          <Button onClick={() => { props.btn === 'Visit' ? handleExpandClick(id) : handleExpand(id) }} variant="outlined">{btnName}</Button>
 
         </ExpandMore>
       </CardActions>
