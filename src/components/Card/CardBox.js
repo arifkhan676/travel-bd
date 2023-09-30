@@ -16,6 +16,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import { contextAPI } from '../../App';
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -28,10 +29,12 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
+
+
 export default function CardBox(props) {
 
-
-  // console.log(props.item.id);
+  const [value, setValue] = React.useContext(contextAPI);
+  console.log(value);
 
   const { id, title, subheader, btnName, image, typography } = props.item;
 
@@ -43,7 +46,12 @@ export default function CardBox(props) {
 
   };
 
-  const handleExpand = (id) => {
+  const handleExpandBuy = (id) => {
+
+    const cartValue = [...value, { id, title, subheader, btnName, image, typography }]
+
+    setValue(cartValue);
+
     navigate(`/ProductPage/${id}`)
 
   }
@@ -85,7 +93,7 @@ export default function CardBox(props) {
         <ExpandMore
           aria-label="show more"
         >
-          <Button onClick={() => { props.btn === 'Visit' ? handleExpandClick(id) : handleExpand(id) }} variant="outlined">{btnName}</Button>
+          <Button onClick={() => { props.btn === 'Visit' ? handleExpandClick(id) : handleExpandBuy(id) }} variant="outlined">{btnName}</Button>
 
         </ExpandMore>
       </CardActions>
