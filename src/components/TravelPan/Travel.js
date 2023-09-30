@@ -1,19 +1,8 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
-import Card from '@mui/material/Card';
-import CardHeader from '@mui/material/CardHeader';
-import CardMedia from '@mui/material/CardMedia';
-import CardContent from '@mui/material/CardContent';
-import CardActions from '@mui/material/CardActions';
-import Collapse from '@mui/material/Collapse';
-import Avatar from '@mui/material/Avatar';
+
 import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import { red } from '@mui/material/colors';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import ShareIcon from '@mui/icons-material/Share';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
+
 import CardBox from '../Card/CardBox';
 import { products, traveldata } from '../TravelData/Traveldata';
 
@@ -30,6 +19,7 @@ const ExpandMore = styled((props) => {
 
 export default function Travel() {
 
+    const [cartClick, setcartClick] = React.useState(true);
 
     return (
         <div>
@@ -40,6 +30,7 @@ export default function Travel() {
                     traveldata.map((item) => {
                         return <CardBox
                             item={item}
+                            cartClick={cartClick}
                             btn='Visit'
                         />
                     })
@@ -55,7 +46,8 @@ export default function Travel() {
                         return <CardBox
                             key={item.id}
                             item={item}
-                            btn='Buy Now'
+                            cartClick={!cartClick}
+                            btn='Click to Buy'
                         />
                     })
 

@@ -38,12 +38,14 @@ export const products = [
     {
         id: 'pro1',
         title: 'Travel Backpack',
+        seeDetails: 'Bag Packs (click to see details) ',
         btnName: 'Buy Now',
         image: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/gh-best-travel-backpacks-1584627095.png?crop=0.974xw:0.749xh;0.0256xw,0.167xh&resize=1200:*',
     },
     {
         id: 'pro2',
         title: 'Hikings Boots',
+        seeDetails: 'Hikings Boots (click to see details) ',
         btnName: 'Buy Now',
         image: 'https://fromyourtrails.com/wp-content/uploads/2021/09/walking-in-hiking-boots-on-rocky-terrain.jpg'
     },
@@ -51,6 +53,7 @@ export const products = [
         id: 'pro3',
         title: 'Drone mini pro',
         btnName: 'Buy Now',
+        seeDetails: ' Drone mini pro(click to see details) ',
         image: 'https://th.bing.com/th/id/OIP.Hop1BDtljd0fRDvBGGJJkAHaFj?pid=ImgDet&rs=1'
     }
 ]

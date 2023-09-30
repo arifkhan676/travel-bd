@@ -8,8 +8,6 @@ const CartProducts = () => {
 
     const CartsItems = traveldata.find(cartItem => cartItem.id === cartId);
 
-
-
     console.log('cartitems here  ' + CartsItems);
 
 

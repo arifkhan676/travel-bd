@@ -15,7 +15,7 @@ import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { Button } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { contextAPI } from '../../App';
 
 const ExpandMore = styled((props) => {
@@ -34,9 +34,9 @@ const ExpandMore = styled((props) => {
 export default function CardBox(props) {
 
   const [value, setValue] = React.useContext(contextAPI);
-  console.log(value);
+  //console.log(value);
 
-  const { id, title, subheader, btnName, image, typography } = props.item;
+  const { id, title, subheader, btnName, image, typography, seeDetails } = props.item;
 
   const navigate = useNavigate();
 
@@ -48,11 +48,9 @@ export default function CardBox(props) {
 
   const handleExpandBuy = (id) => {
 
-    const cartValue = [...value, { id, title, subheader, btnName, image, typography }]
+    const cartValue = [...value, props.item]
 
     setValue(cartValue);
-
-    navigate(`/ProductPage/${id}`)
 
   }
 
@@ -82,6 +80,12 @@ export default function CardBox(props) {
         <Typography variant="body2" color="text.secondary">
           {typography}
         </Typography>
+        <NavLink to={`/ProductPage/${id}`} >
+          <Typography variant="body2" color="text.secondary">
+            {seeDetails}
+          </Typography>
+        </NavLink>
+
       </CardContent>
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
@@ -93,7 +97,9 @@ export default function CardBox(props) {
         <ExpandMore
           aria-label="show more"
         >
-          <Button onClick={() => { props.btn === 'Visit' ? handleExpandClick(id) : handleExpandBuy(id) }} variant="outlined">{btnName}</Button>
+          <Button onClick={() => { props.cartClick ? handleExpandClick(id) : handleExpandBuy(id) }} variant="outlined">
+            {props.btn}
+          </Button>
 
         </ExpandMore>
       </CardActions>

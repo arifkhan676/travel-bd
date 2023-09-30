@@ -5,6 +5,8 @@ import CardBox from '../Card/CardBox';
 
 const ProductPage = () => {
 
+
+
     const { proId } = useParams();
 
     const getProducts = products.find(product => product.id === proId);
@@ -16,7 +18,10 @@ const ProductPage = () => {
             <h1> Here is your products </h1>
 
             <div>
-                <CardBox item={getProducts} />
+                <CardBox item={getProducts}
+                    btn='Buy Now'
+
+                />
             </div>
 
         </div>

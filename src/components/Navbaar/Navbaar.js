@@ -24,6 +24,8 @@ function Navbaar() {
 
     const [value, setValue] = React.useContext(contextAPI)
 
+
+
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -49,7 +51,7 @@ function Navbaar() {
     }
 
     return (
-        <AppBar position="static">
+        <AppBar position="sticky">
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
