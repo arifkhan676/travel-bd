@@ -12,30 +12,41 @@ import CartProducts from './components/CartProducts/CartProducts';
 
 export const contextAPI = createContext();
 
+export const contextAPI2 = createContext();
+
+
 function App() {
 
 
-  const [value, setValue] = useState([]);
-
+  const [value, setValue] = useState(5);
+  const [profile, setProfile] = useState(
+    {
+      name: 'arif',
+      img: ''
+    }
+  )
 
   return (
     <div className="App">
       <contextAPI.Provider value={[value, setValue]} >
-        <React.Fragment>
-          <Navbaar />
-          <Routes>
-            <Route exact path='/' element={<Home />} > </Route>
-            <Route path='/VisitPage/:id' element={<VisitPage />} > </Route>
-            <Route path='/login' element={<Login />} > </Route>
-            <Route path='/ProductPage/:proId' element={<ProductPage />} > </Route>
-            <Route path='/CartProducts/:cartId' element={<CartProducts />} > </Route>
+        <contextAPI2.Provider value={[profile, setProfile]} >
+          <React.Fragment>
+            <Navbaar />
+            <Routes>
+              <Route exact path='/' element={<Home />} > </Route>
+              <Route path='/VisitPage/:id' element={<VisitPage />} > </Route>
+              <Route path='/login' element={<Login />} > </Route>
+              <Route path='/ProductPage/:proId' element={<ProductPage />} > </Route>
+              <Route path='/CartProducts/:cartId' element={<CartProducts />} > </Route>
 
-            <Route path='*' element={<NotFound />}  >  </Route>
+              <Route path='*' element={<NotFound />}  >  </Route>
 
-          </Routes>
-          <Footer />
-        </React.Fragment>
+            </Routes>
+            <Footer />
+          </React.Fragment>
+        </contextAPI2.Provider>
       </contextAPI.Provider>
+
     </div>
   );
 }

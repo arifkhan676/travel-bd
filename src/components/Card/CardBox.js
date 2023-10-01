@@ -48,6 +48,8 @@ export default function CardBox(props) {
 
   const handleExpandBuy = (id) => {
 
+
+
     const cartValue = [...value, props.item]
 
     setValue(cartValue);
@@ -97,9 +99,11 @@ export default function CardBox(props) {
         <ExpandMore
           aria-label="show more"
         >
-          <Button onClick={() => { props.cartClick ? handleExpandClick(id) : handleExpandBuy(id) }} variant="outlined">
+
+          <div onClick={() => { props.cartClick ? handleExpandClick(id) : handleExpandBuy(id) }}>
             {props.btn}
-          </Button>
+          </div>
+
 
         </ExpandMore>
       </CardActions>

@@ -34,7 +34,7 @@ const VisitPage = (props) => {
             <div style={{ display: 'flex' }} >
                 <div style={{ width: '30%' }} >
                     <CardBox item={getCard}
-                        btn='Book'
+
                     />
 
                 </div>

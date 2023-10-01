@@ -2,8 +2,9 @@ import React from 'react'
 import { useParams } from 'react-router-dom'
 import { products } from '../TravelData/Traveldata';
 import CardBox from '../Card/CardBox';
+import { Button } from '@mui/material';
 
-const ProductPage = () => {
+const ProductPage = (props) => {
 
 
 
@@ -19,8 +20,9 @@ const ProductPage = () => {
 
             <div>
                 <CardBox item={getProducts}
-                    btn='Buy Now'
-
+                    btn={<Button variant="outlined">
+                        Buy
+                    </Button>}
                 />
             </div>
 

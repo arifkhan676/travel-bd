@@ -5,6 +5,9 @@ import IconButton from '@mui/material/IconButton';
 
 import CardBox from '../Card/CardBox';
 import { products, traveldata } from '../TravelData/Traveldata';
+import { Button } from '@mui/material';
+import PrivateRoute from '../PrivateRoute/PrivateRoute';
+import { contextAPI, contextAPI2 } from '../../App';
 
 const ExpandMore = styled((props) => {
     const { expand, ...other } = props;
@@ -19,6 +22,12 @@ const ExpandMore = styled((props) => {
 
 export default function Travel() {
 
+    const [value, setValue] = React.useContext(contextAPI)
+    const [profile, setProfile] = React.useContext(contextAPI2)
+
+    console.log(value + ' here we go');
+    console.log(profile + ' here we go');
+
     const [cartClick, setcartClick] = React.useState(true);
 
     return (
@@ -26,12 +35,16 @@ export default function Travel() {
             <p> Plan your next trip? </p>
             <h1> Next Destination </h1>
             <div style={{ display: 'flex', padding: '60px', marginLeft: '30px' }} >
+                <PrivateRoute />
+
                 {
                     traveldata.map((item) => {
                         return <CardBox
                             item={item}
                             cartClick={cartClick}
-                            btn='Visit'
+                            btn={<Button variant="outlined">
+                                Visit
+                            </Button>}
                         />
                     })
 
@@ -47,7 +60,9 @@ export default function Travel() {
                             key={item.id}
                             item={item}
                             cartClick={!cartClick}
-                            btn='Click to Buy'
+                            btn={<Button variant="outlined">
+                                Click to Buy
+                            </Button>}
                         />
                     })
 
