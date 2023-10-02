@@ -18,7 +18,7 @@ import { contextAPI } from '../../App';
 import { Badge } from '@mui/material';
 
 const pages = ['Home', 'Destinations', 'Stories'];
-const settings = ['Profile', 'Account', 'Logout'];
+const settings = ['Profile', 'Account', 'Signup', 'Logout'];
 
 function Navbaar() {
 
@@ -178,8 +178,9 @@ function Navbaar() {
                             onClose={handleCloseUserMenu}
                         >
                             {settings.map((setting) => (
+
                                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                                    <Typography textAlign="center">{setting}</Typography>
+                                    <Typography textAlign="center"> {setting}</Typography>
                                 </MenuItem>
                             ))}
                         </Menu>

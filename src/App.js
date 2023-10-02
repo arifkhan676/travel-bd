@@ -9,6 +9,7 @@ import Footer from './components/Footer/Footer';
 import Login from './components/Sign/Login';
 import ProductPage from './components/ProductPage/ProductPage';
 import CartProducts from './components/CartProducts/CartProducts';
+import SignUp from './components/Sign/SignUp';
 
 export const contextAPI = createContext();
 
@@ -35,9 +36,10 @@ function App() {
             <Routes>
               <Route exact path='/' element={<Home />} > </Route>
               <Route path='/VisitPage/:id' element={<VisitPage />} > </Route>
-              <Route path='/login' element={<Login />} > </Route>
               <Route path='/ProductPage/:proId' element={<ProductPage />} > </Route>
               <Route path='/CartProducts/:cartId' element={<CartProducts />} > </Route>
+              <Route path='/login' element={<Login />} > </Route>
+              <Route path='/Signup' element={<SignUp />} > </Route>
 
               <Route path='*' element={<NotFound />}  >  </Route>
 
