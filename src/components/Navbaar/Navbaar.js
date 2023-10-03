@@ -16,6 +16,8 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { contextAPI, contextAPI2 } from '../../App';
 import { Badge } from '@mui/material';
+import { auth } from '../../firebase.config';
+import { signOut } from 'firebase/auth';
 
 const pages = ['Home', 'Destinations', 'Stories'];
 const settings = ['Profile', 'Account', 'Signup', 'Logout'];
@@ -51,6 +53,22 @@ function Navbaar() {
 
     const cartClick = () => {
         navigate(`/CartProducts/${value.id}`)
+    }
+
+    const SignOutX = () => {
+
+        signOut(auth).then(() => {
+
+            const signOutData = {
+                isLogged: true,
+                name: '',
+                email: '',
+                photoURL: ''
+            }
+            setUser(signOutData)
+        }).catch((error) => {
+            // An error happened.
+        });
     }
 
     return (
@@ -148,11 +166,18 @@ function Navbaar() {
                     </Typography>
 
                     <Typography>
-                        <NavLink to='/Signup' style={{ color: 'white', marginRight: '30px', textDecoration: 'none' }} > Sign Up </NavLink>
+                        {
+                            user.isLogged ? <NavLink to='/Signup' style={{ color: 'white', marginRight: '30px', textDecoration: 'none' }} > Sign Up </NavLink>
+                                : <Button onClick={SignOutX} style={{ color: 'white', marginRight: '30px', textDecoration: 'none' }} > Sign Out </Button>
+                        }
+
                     </Typography>
 
                     <Typography>
-                        <NavLink to='/' style={{ color: 'white', marginRight: '30px', textDecoration: 'none' }} > {user.name} </NavLink>
+                        {
+                            user.isLogged ? '' : <NavLink to='/' style={{ color: 'white', marginRight: '30px', textDecoration: 'none' }} > {user.name} </NavLink>
+
+                        }
 
                     </Typography>
 
@@ -168,7 +193,7 @@ function Navbaar() {
                         <Tooltip title="Open settings">
 
                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                                <Avatar alt="Remy Sharp" src={user.photoURL} />
                             </IconButton>
                         </Tooltip>
 

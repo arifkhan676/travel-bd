@@ -22,8 +22,10 @@ function App() {
   const [value, setValue] = useState([]);
   const [user, setUser] = useState(
     {
+      isLogged: true,
       name: '',
       email: '',
+      photoURL: '',
       password: ''
     }
   );
