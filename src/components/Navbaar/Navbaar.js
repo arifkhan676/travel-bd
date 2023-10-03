@@ -14,7 +14,7 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { NavLink, useNavigate } from 'react-router-dom';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import { contextAPI } from '../../App';
+import { contextAPI, contextAPI2 } from '../../App';
 import { Badge } from '@mui/material';
 
 const pages = ['Home', 'Destinations', 'Stories'];
@@ -22,8 +22,11 @@ const settings = ['Profile', 'Account', 'Signup', 'Logout'];
 
 function Navbaar() {
 
-    const [value, setValue] = React.useContext(contextAPI)
+    const [user, setUser] = React.useContext(contextAPI2);
 
+    // console.log(user);
+
+    const [value, setValue] = React.useContext(contextAPI)
 
 
     const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -144,6 +147,14 @@ function Navbaar() {
                         <NavLink to='/login' style={{ color: 'white', marginRight: '30px', textDecoration: 'none' }} > Login </NavLink>
                     </Typography>
 
+                    <Typography>
+                        <NavLink to='/Signup' style={{ color: 'white', marginRight: '30px', textDecoration: 'none' }} > Sign Up </NavLink>
+                    </Typography>
+
+                    <Typography>
+                        <NavLink to='/' style={{ color: 'white', marginRight: '30px', textDecoration: 'none' }} > {user.name} </NavLink>
+
+                    </Typography>
 
                     <Badge onClick={() => { cartClick(value.id) }} badgeContent={value.length} color="secondary" style={{ marginRight: '30px' }}>
                         <ShoppingCartIcon />

@@ -48,10 +48,7 @@ export default function CardBox(props) {
 
   const handleExpandBuy = (id) => {
 
-
-
     const cartValue = [...value, props.item]
-
     setValue(cartValue);
 
   }

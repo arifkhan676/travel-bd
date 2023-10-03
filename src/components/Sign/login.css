@@ -1,8 +1,40 @@
 .input{
-    padding: 15px;
-    
+    padding: 15px 40px ;
 }
-label{
-    text-align: left;
+
+form label{
+   text-align: left;
+   margin-top: 10px;
+}
+
+.icon{
+    display: flex;
+    gap: 20px;
     margin-top: 10px;
+    align-items: center;
+    justify-content: center;
 }
+
+.pointer{
+    cursor: pointer;
+}
+.submit{
+    font-size:15px;
+    font-family:Arial;
+    width:140px;
+    height:50px;
+    border-width:1px;
+    color:#fff;
+    border-color:#0b0e07;
+    border-top-left-radius:3px;
+    border-top-right-radius:3px;
+    border-bottom-left-radius:3px;
+    border-bottom-right-radius:3px;
+    box-shadow:inset 0px -3px 7px 0px #29bbff;
+    text-shadow:inset 0px 1px 0px #263666;
+    background:linear-gradient(#2dabf9, #0688fa);
+}
+
+.submit:hover {
+    background: linear-gradient(#0688fa, #2dabf9);
+  }

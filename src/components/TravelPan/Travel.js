@@ -25,7 +25,6 @@ export default function Travel() {
     const [value, setValue] = React.useContext(contextAPI)
     const [profile, setProfile] = React.useContext(contextAPI2)
 
-    console.log(value + ' here we go');
     console.log(profile + ' here we go');
 
     const [cartClick, setcartClick] = React.useState(true);

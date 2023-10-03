@@ -19,18 +19,20 @@ export const contextAPI2 = createContext();
 function App() {
 
 
-  const [value, setValue] = useState(5);
-  const [profile, setProfile] = useState(
+  const [value, setValue] = useState([]);
+  const [user, setUser] = useState(
     {
-      name: 'arif',
-      img: ''
+      name: '',
+      email: '',
+      password: ''
     }
-  )
+  );
+
 
   return (
     <div className="App">
       <contextAPI.Provider value={[value, setValue]} >
-        <contextAPI2.Provider value={[profile, setProfile]} >
+        <contextAPI2.Provider value={[user, setUser]} >
           <React.Fragment>
             <Navbaar />
             <Routes>
