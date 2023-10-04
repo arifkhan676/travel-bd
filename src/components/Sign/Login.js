@@ -58,6 +58,16 @@ const Login = () => {
       .then((userCredential) => {
         // Signed in 
         const user = userCredential.user;
+        const { isLogged, name, email, photoURL } = userCredential.user;
+
+        const signIn = {
+          isLogged: false,
+          name: name,
+          email: email,
+          photoURL: photoURL
+        }
+        setUser(signIn);
+
         console.log('signed in sucessful' + user);
 
         // ...

@@ -26,7 +26,9 @@ function App() {
       name: '',
       email: '',
       photoURL: '',
-      password: ''
+      password: '',
+      success: '',
+      error: ''
     }
   );
 

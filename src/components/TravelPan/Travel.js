@@ -6,7 +6,6 @@ import IconButton from '@mui/material/IconButton';
 import CardBox from '../Card/CardBox';
 import { products, traveldata } from '../TravelData/Traveldata';
 import { Button } from '@mui/material';
-import PrivateRoute from '../PrivateRoute/PrivateRoute';
 import { contextAPI, contextAPI2 } from '../../App';
 
 const ExpandMore = styled((props) => {
@@ -34,7 +33,6 @@ export default function Travel() {
             <p> Plan your next trip? </p>
             <h1> Next Destination </h1>
             <div style={{ display: 'flex', padding: '60px', marginLeft: '30px' }} >
-                <PrivateRoute />
 
                 {
                     traveldata.map((item) => {

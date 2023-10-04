@@ -12,9 +12,11 @@ const SignUp = () => {
 
   const [handleUser, setHandleUser] = useState(
     {
+      isLogged: true,
       name: '',
       email: '',
-      password: ''
+      password: '',
+
     }
   );
 
@@ -38,7 +40,7 @@ const SignUp = () => {
           // Signed up 
           const user = userCredential.user;
           setUser(userData)
-          console.log('success');
+
           // ...
         })
         .catch((error) => {
@@ -55,6 +57,7 @@ const SignUp = () => {
   return (
     <div style={{ padding: '5%', width: '20%', position: 'relative', left: '35%', }} >
       <h3> Sign Up Please </h3>
+      <p> { } </p>
       <form action="" onSubmit={SignUpSubmit} >
         <input onChange={handleUserChange} name='name' value={handleUser.name} className='input' type="text" placeholder='Your Name' aria-required />
         <br />  <br />
