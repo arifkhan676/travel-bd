@@ -10,6 +10,7 @@ import Login from './components/Sign/Login';
 import ProductPage from './components/ProductPage/ProductPage';
 import CartProducts from './components/CartProducts/CartProducts';
 import SignUp from './components/Sign/SignUp';
+import Stories from './components/Stories/Stories';
 
 export const contextAPI = createContext();
 
@@ -20,6 +21,7 @@ function App() {
 
 
   const [value, setValue] = useState([]);
+
   const [user, setUser] = useState(
     {
       isLogged: true,
@@ -46,6 +48,7 @@ function App() {
               <Route path='/CartProducts/:cartId' element={<CartProducts />} > </Route>
               <Route path='/login' element={<Login />} > </Route>
               <Route path='/Signup' element={<SignUp />} > </Route>
+              <Route path='/Stories' element={<Stories />} > </Route>
 
               <Route path='*' element={<NotFound />}  >  </Route>
 

@@ -40,7 +40,7 @@ const SignUp = () => {
           // Signed up 
           const user = userCredential.user;
           setUser(userData)
-
+          setUser(user.success = 'Account created')
           // ...
         })
         .catch((error) => {
