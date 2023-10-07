@@ -12,7 +12,7 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { contextAPI, contextAPI2 } from '../../App';
 import { Badge } from '@mui/material';
@@ -105,6 +105,7 @@ function Navbaar() {
                         >
                             <MenuIcon />
                         </IconButton>
+
                         <Menu
                             id="menu-appbar"
                             anchorEl={anchorElNav}
@@ -123,12 +124,18 @@ function Navbaar() {
                                 display: { xs: 'block', md: 'none' },
                             }}
                         >
-                            {pages.map((page) => (
-                                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                    <Typography textAlign="center">{page}</Typography>
-                                </MenuItem>
-                            ))}
+
+                            <MenuItem onClick={handleCloseNavMenu}>
+                                <NavLink to='/' > Home <br></br> </NavLink>
+
+                            </MenuItem>
+                            <MenuItem onClick={handleCloseNavMenu}>
+                                <NavLink to='/Stories' > Stories </NavLink>
+
+                            </MenuItem>
+
                         </Menu>
+
                     </Box>
                     <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
                     <Typography
@@ -150,15 +157,15 @@ function Navbaar() {
                         LOGO
                     </Typography>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                        {pages.map((page) => (
-                            <Button
-                                key={page}
-                                onClick={handleCloseNavMenu}
-                                sx={{ my: 2, color: 'white', display: 'block' }}
-                            >
-                                {page}
-                            </Button>
-                        ))}
+
+                        <Button onClick={handleCloseNavMenu}
+                            sx={{ my: 2, color: 'white', display: 'block' }}
+                        >
+                            <NavLink style={{ marginRight: '30px', color: 'white', textDecoration: 'none' }} to='/' > Home  </NavLink>
+                            <NavLink style={{ marginRight: '30px', color: 'white', textDecoration: 'none' }} to='/' > Destinations  </NavLink>
+                            <NavLink style={{ marginRight: '30px', color: 'white', textDecoration: 'none' }} to='/Stories' > Stories  </NavLink>
+                        </Button>
+
                     </Box>
 
                     <Typography>
