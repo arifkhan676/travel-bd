@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import './login.css'
 import { Button } from '@mui/joy'
 import { createUserWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
@@ -7,63 +7,66 @@ import { contextAPI2 } from '../../App';
 
 const SignUp = () => {
 
+  const [user, setUser] = useContext(contextAPI2);
 
-  const [user, setUser] = React.useContext(contextAPI2);
 
-  const [handleUser, setHandleUser] = useState(
-    {
-      isLogged: true,
-      name: '',
-      email: '',
-      password: '',
-
-    }
-  );
-
-  console.log(user);
 
   const handleUserChange = (e) => {
     const { name, value } = e.target;
-    setHandleUser((preValue) => {
-      return {
-        ...preValue,
-        [name]: value
-      }
-    })
+    let isValidFrom = true;
+
+    if (name === 'email') {
+      const re = /\S+@\S+\.\S+/;
+      isValidFrom = re.test(e.target.value)
+    }
+    if (name === 'password') {
+      const isValidPass = e.target.value.length > 6;
+      const isValidPassNum = /\d{1}/.test(e.target.value);
+      isValidFrom = isValidPass && isValidPassNum
+    }
+    if (isValidFrom) {
+      const formUser = { ...user }
+      formUser[e.target.name] = e.target.value
+      setUser(formUser)
+    }
   }
 
   const SignUpSubmit = (e) => {
-    const userData = { ...handleUser }
-    if (handleUser.email && handleUser.password) {
-      createUserWithEmailAndPassword(auth, handleUser.email, handleUser.password)
+    const userInfo = { ...user }
+    if (user.email && user.password) {
+      createUserWithEmailAndPassword(auth, user.email, user.password)
         .then((userCredential) => {
           // Signed up 
           const user = userCredential.user;
-          setUser(userData)
-          setUser(user.success = 'Account created')
-          // ...
+          userInfo.succes = 'Account created'
+          userInfo.isLogged = false
+          setUser(userInfo);
+          userInfo.error = ''
+
         })
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
-          console.log('error is: ' + errorMessage);
-          // ..
+          userInfo.error = 'Email already taken'
+          userInfo.isLogged = true
+          setUser(userInfo)
         });
     }
-
     e.preventDefault();
   }
+
 
   return (
     <div style={{ padding: '5%', width: '20%', position: 'relative', left: '35%', }} >
       <h3> Sign Up Please </h3>
-      <p> { } </p>
+      {user.isLogged === false ? <p style={{ color: 'green' }} > {user.succes}   </p>
+        : <p style={{ color: 'red' }} > {user.error}   </p>}
       <form action="" onSubmit={SignUpSubmit} >
-        <input onChange={handleUserChange} name='name' value={handleUser.name} className='input' type="text" placeholder='Your Name' aria-required />
+        <input onChange={handleUserChange} name='name' className='input' type="text" placeholder='Your Name' aria-required />
         <br />  <br />
-        <input onChange={handleUserChange} name='email' value={handleUser.email} className='input' type="email" placeholder='Your Email' aria-required />
+        <input onChange={handleUserChange} name='email' className='input' type="email" placeholder='Your Email' aria-required />
         <br />  <br />
-        <input onChange={handleUserChange} name='password' value={handleUser.password} className='input' type="password" placeholder='Password' />
+        <input onChange={handleUserChange} name='password' className='input' type="password" placeholder='Password' />
         <br />  <br />
         <input className='submit' type="submit" value="Submit" />
       </form>

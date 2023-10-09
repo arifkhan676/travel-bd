@@ -12,22 +12,9 @@ const Login = () => {
   const [user, setUser] = React.useContext(contextAPI2);
 
 
-  const handleLoginChange = (e) => {
-    const { name, value } = e.target;
-    setUser((preValue) => {
-      return {
-        ...preValue,
-        [name]: value
-      }
-    })
-  }
-
-
   const googleAuth = () => {
     signInWithPopup(auth, provider)
       .then((result) => {
-        // This gives you a Google Access Token. You can use it to access the Google API.
-        //  console.log(result);
 
         const { displayName, email, photoURL } = result.user;
 
@@ -53,31 +40,38 @@ const Login = () => {
 
   }
 
+  const handleLoginChange = (e) => {
+    const { name, value } = e.target;
+
+    const newUser = { ...user };
+    newUser[e.target.name] = e.target.value;
+    setUser(newUser)
+  }
+
+
   const loginForm = (e) => {
-    signInWithEmailAndPassword(auth, user.email, user.password)
-      .then((userCredential) => {
-        // Signed in 
-        const user = userCredential.user;
-        const { isLogged, name, email, photoURL } = userCredential.user;
+    const userInfo = { ...user }
+    if (user.email && user.password) {
+      signInWithEmailAndPassword(auth, user.email, user.password)
+        .then((userCredential) => {
+          // Signed in 
+          const user = userCredential.user;
+          userInfo.success = 'Login Successful'
+          userInfo.isLogged = false
+          setUser(userInfo)
+          console.log(userInfo.success);
 
-        const signIn = {
-          isLogged: false,
-          name: name,
-          email: email,
-          photoURL: photoURL
-        }
-        setUser(signIn);
+          // ...
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          userInfo.error = 'Wrong info'
+          userInfo.isLogged = true
+          setUser(userInfo)
+        });
+    }
 
-        console.log('signed in sucessful' + user);
-
-        // ...
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log('error to sign in: ' + errorMessage);
-
-      });
     e.preventDefault();
   }
 
@@ -85,11 +79,13 @@ const Login = () => {
     <div style={{ padding: '5%', width: '20%', position: 'relative', left: '35%', }} >
 
       <h3> Login to the form </h3>
+      {user.isLogged === false ? <p style={{ color: 'green', marginTop: '10px', marginBottom: '10px' }} > {user.success}   </p>
+        : <p style={{ color: 'red' }} > {user.error}   </p>}
 
       <form action="" onSubmit={loginForm} >
         <input onChange={handleLoginChange} name='email' className='input' type="text" placeholder='Email' />
         <br />  <br />
-        <input onChange={handleLoginChange} name='password' value={user.password} className='input' type="password" placeholder='Password' />
+        <input onChange={handleLoginChange} name='password' className='input' type="password" placeholder='Password' />
         <br />  <br />
         <input className='submit' type="submit" value="submit" />
       </form>

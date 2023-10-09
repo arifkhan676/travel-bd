@@ -174,15 +174,8 @@ function Navbaar() {
 
                     <Typography>
                         {
-                            user.isLogged ? <NavLink to='/Signup' style={{ color: 'white', marginRight: '30px', textDecoration: 'none' }} > Sign Up </NavLink>
-                                : <Button onClick={SignOutX} style={{ color: 'white', marginRight: '30px', textDecoration: 'none' }} > Sign Out </Button>
-                        }
-
-                    </Typography>
-
-                    <Typography>
-                        {
-                            user.isLogged ? '' : <NavLink to='/' style={{ color: 'white', marginRight: '30px', textDecoration: 'none' }} > {user.name} </NavLink>
+                            user.isLogged ? <Button onClick={SignOutX} style={{ color: 'white', marginRight: '30px', textDecoration: 'none' }} > Sign Out </Button>
+                                : <NavLink to='/Signup' style={{ color: 'white', marginRight: '30px', textDecoration: 'none' }} > Sign Up </NavLink>
 
                         }
 
